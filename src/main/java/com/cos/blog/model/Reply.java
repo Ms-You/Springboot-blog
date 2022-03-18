@@ -31,5 +31,5 @@ public class Reply {
     private Board board;
 
     @CreationTimestamp
-    private Timestamp craeteDate;
+    private Timestamp createDate;
 }

@@ -21,7 +21,10 @@ public class User {
     private int id;
 
     @Column(nullable = false, length = 30, unique = true)
-    private String username;
+    private String joinId;
+
+    @Column(nullable = false, length = 15, unique = true)
+    private String nickName;
 
     @Column(nullable = false, length = 100)
     private String password;
