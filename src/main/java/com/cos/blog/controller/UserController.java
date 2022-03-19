@@ -12,12 +12,12 @@ public class UserController {
     }
 
     @GetMapping("/user/joinForm")
-    public String join(){
+    public String joinUser(){
         return "user/joinForm";
     }
 
     @GetMapping("/user/loginForm")
-    public String login(){
+    public String loginUser(){
         return "user/loginForm";
     }
 
