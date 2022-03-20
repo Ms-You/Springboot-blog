@@ -5,8 +5,8 @@ import com.cos.blog.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +18,11 @@ public class UserService {
     @Transactional
     public void join(User user){
         userRepository.save(user);
+    }
+
+    @Transactional(readOnly = true)
+    public User login(User user){
+        return userRepository.findByJoinIdAndPassword(user.getJoinId(), user.getPassword());
     }
 
 }
