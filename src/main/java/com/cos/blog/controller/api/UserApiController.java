@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpSession;
-
 @RequiredArgsConstructor
 @RestController
 public class UserApiController {
@@ -20,7 +18,7 @@ public class UserApiController {
     @Autowired
     private final UserService userService;
 
-    @PostMapping("/api/user")
+    @PostMapping("/auth/joinProc")
     public ResponseDto<Integer> save(@RequestBody User user){
         user.setRole(RoleType.USER);
         userService.join(user);
@@ -28,14 +26,6 @@ public class UserApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    @PostMapping("/api/user/login")
-    public ResponseDto<Integer> login(@RequestBody User user, HttpSession session){
-        User principal = userService.login(user);
 
-        if (principal != null){
-            session.setAttribute("principal", principal);
-        }
 
-        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
-    }
 }
