@@ -7,7 +7,7 @@ let index = {
 
     save: function(){
         let data = {
-            joinId: $("#joinId").val(),
+            username: $("#username").val(),
             nickName: $("#nickName").val(),
             password: $("#password").val(),
             email: $("#email").val()

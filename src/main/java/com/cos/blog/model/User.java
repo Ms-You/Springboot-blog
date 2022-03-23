@@ -21,7 +21,7 @@ public class User {
     private int id;
 
     @Column(nullable = false, length = 30, unique = true)
-    private String joinId;
+    private String username;
 
     @Column(nullable = false, length = 15, unique = true)
     private String nickName;

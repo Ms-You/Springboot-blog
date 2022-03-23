@@ -12,6 +12,9 @@ public class PrincipalDetail implements UserDetails {
 
     private User user;
 
+    public PrincipalDetail(User user){
+        this.user = user;
+    }
 
     @Override
     public String getPassword() {
@@ -20,7 +23,7 @@ public class PrincipalDetail implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getJoinId();
+        return user.getUsername();
     }
 
     // 계정이 만료되지 않은지 리턴 (true: 만료 안됨)
@@ -38,13 +41,13 @@ public class PrincipalDetail implements UserDetails {
     // 비밀번호가 만료되지 않은지 리턴
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     // 계정이 활성화인지 리턴
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     // 계정의 권한을 리턴
