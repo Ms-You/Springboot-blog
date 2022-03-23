@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- head.html -->
+<th:block th:replace="layout/head::headFragment"></th:block>
+
+<!-- layout/header.html -->
+<header th:replace="layout/header::headerFragment"></header>
+
+<body layout:fragment="content">
+  <div class="container">
+
+    <form class="was-validated">
+      <div class="form-group">
+        <label for="title">제목:</label>
+        <input type="text" class="form-control" id="title" placeholder="Enter Id" required>
+      </div>
+
+      <div class="form-group">
+        <label for="content">내용: </label>
+        <textarea class="form-control summernote" id="content" rows="5"></textarea>
+      </div>
+    </form>
+
+    <button id="btn-save" class="btn btn-primary">글쓰기</button>
+
+  </div>
+
+  <script>
+      $('.summernote').summernote({
+        tabsize: 2,
+        height: 300
+      });
+    </script>
+    <script src="/js/board.js"></script>
+</body>
+
+<!-- layout/footer.html -->
+<footer th:replace="layout/footer::footerFragment"></footer>
