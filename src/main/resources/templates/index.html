@@ -12,7 +12,7 @@
     <!-- content -->
     <div class="container">
 
-        <section th:each="boards : ${boards}">
+        <section th:each="boards : ${boards.content}">
             <div class="card m-2">
                 <div class="card-header">
                     <h5 class="card-title" th:text="${boards.title}">제목</h5>
@@ -25,6 +25,23 @@
                 </div>
             </div>
         </section>
+
+        <ul class="pagination justify-content-center">
+            <div th:if="${boards.first}">
+                <li class="page-item disabled"><a class="page-link" th:href="@{?page={number}(number=${boards.number-1})}">이전</a></li>
+            </div>
+            <div th:unless="${boards.first}">
+                <li class="page-item"><a class="page-link" th:href="@{?page={number}(number=${boards.number-1})}">이전</a></li>
+            </div>
+
+            <div th:if="${boards.last}">
+                <li class="page-item disabled"><a class="page-link" th:href="@{?page={number}(number=${boards.number+1})}">다음</a></li>
+            </div>
+            <div th:unless="${boards.last}">
+                <li class="page-item"><a class="page-link" th:href="@{?page={number}(number=${boards.number+1})}">다음</a></li>
+            </div>
+        </ul>
+<!-- <li class="page-item"><a class="page-link" href="#">1</a></li> -->
 
     </div>
 </body>
