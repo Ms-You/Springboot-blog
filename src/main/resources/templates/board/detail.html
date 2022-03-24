@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<!-- head.html -->
+<th:block th:replace="layout/head::headFragment"></th:block>
+
+<!-- layout/header.html -->
+<header th:replace="layout/header::headerFragment"></header>
+
+<body layout:fragment="content">
+  <div class="container">
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-warning">수정</button>
+      <button class="btn btn-danger">삭제</button>
+      <br/><br/>
+    </div>
+    <div class="form-group">
+      <h4 th:text="'작성자: ' + ${board.user.nickName}"></h4>
+      <small th:text="'작성일: ' + ${board.createDate}"></small>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+      <h3 th:utext="${board.title}"></h3>
+    </div>
+
+    <hr/>
+    
+    <div class="form-group">
+      <div th:utext="${board.content}"></div>
+    </div>
+
+
+  </div>
+
+</body>
+
+<!-- layout/footer.html -->
+<footer th:replace="layout/footer::footerFragment"></footer>

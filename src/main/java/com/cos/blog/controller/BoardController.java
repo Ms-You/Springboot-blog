@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RequiredArgsConstructor
 @Controller
@@ -29,6 +30,13 @@ public class BoardController {
     @GetMapping("/board/saveForm")
     public String saveForm() {
         return "board/saveForm";
+    }
+
+    @GetMapping("/board/{id}")
+    public String view(@PathVariable int id, Model model){
+        model.addAttribute("board", boardService.detailView(id));
+
+        return "board/detail";
     }
 
 
