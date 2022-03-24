@@ -12,29 +12,19 @@
     <!-- content -->
     <div class="container">
 
-        <div class="card m-2">
-            <div class="card-header">
-                <h5 class="card-title">제목</h5>
+        <section th:each="boards : ${boards}">
+            <div class="card m-2">
+                <div class="card-header">
+                    <h5 class="card-title" th:text="${boards.title}">제목</h5>
+                </div>
+                <div class="card-body">
+                    <a href="#" class="btn btn-primary">상세보기</a>
+                </div>
+                <div class="card-footer text-muted" th:text="${boards.createDate}">
+                    작성 시간
+                </div>
             </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary">상세보기</a>
-            </div>
-            <div class="card-footer text-muted">
-                작성 시간
-            </div>
-        </div>
-
-        <div class="card m-2">
-            <div class="card-header">
-                <h5 class="card-title">제목</h5>
-            </div>
-            <div class="card-body">
-                <a href="#" class="btn btn-primary">상세보기</a>
-            </div>
-            <div class="card-footer text-muted">
-                작성 시간
-            </div>
-        </div>
+        </section>
 
     </div>
 </body>
