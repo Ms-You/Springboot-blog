@@ -26,13 +26,20 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    @Transactional(readOnly = true)
     public Page<Board> list(Pageable pageable){
         return boardRepository.findAll(pageable);
     }
 
+    @Transactional(readOnly = true)
     public Board detailView(int id){
         return boardRepository.findById(id).orElseThrow(()->{
             return new IllegalArgumentException("글 상세보기 실패: 해당 게시글을 찾을 수 없습니다.");
         });
+    }
+
+    @Transactional
+    public void deleteBoard(int id){
+        boardRepository.deleteById(id);
     }
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <!-- head.html -->
 <th:block th:replace="layout/head::headFragment"></th:block>
@@ -13,12 +13,18 @@
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-secondary m-2" onclick="history.back()">돌아가기</button>
-      <button id="btn-update" class="btn btn-warning m-2">수정</button>
-      <button id="btn-delete" class="btn btn-danger m-2">삭제</button>
+
+    <!--  게시글 수정, 삭제  -->
+      <div th:if="${board.user.username.equals(#authentication.getName())}">
+        <button id="btn-update" class="btn btn-warning m-2">수정</button>
+        <button id="btn-delete" class="btn btn-danger m-2">삭제</button>
+      </div>
+
       <br/><br/>
     </div>
 
     <div>
+      <span id="id" th:text="${board.id}"></span>
       <h4 th:utext="'<small>작성자: </small><b>'+${board.user.nickName}+'</b>'"></h4>
       <small th:text="${board.createDate}"></small>
     </div>
@@ -37,7 +43,7 @@
 
 
   </div>
-
+  <script src="/js/board.js"></script>
 </body>
 
 <!-- layout/footer.html -->
