@@ -15,7 +15,8 @@
         <section th:each="boards : ${boards.content}">
             <div class="card m-2">
                 <div class="card-header">
-                    <h5 class="card-title" th:text="${boards.title}">제목</h5>
+                    <h6 class="card-title" th:utext="${'<small>작성자: </small>' + boards.user.username}"></h6>
+                    <h4 class="card-title" th:text="${boards.title}">제목</h4>
                 </div>
                 <div class="card-body">
                     <a th:href="@{/board/{id}(id=${boards.id})}" class="btn btn-primary">상세보기</a>

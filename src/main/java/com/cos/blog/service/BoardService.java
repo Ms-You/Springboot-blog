@@ -42,4 +42,21 @@ public class BoardService {
     public void deleteBoard(int id){
         boardRepository.deleteById(id);
     }
+
+    @Transactional
+    public int updateBoard(int id, Board requestBoard, String sessionUser){
+        Board board = boardRepository.findById(id).orElseThrow(()->{
+            return new IllegalArgumentException("글 찾기 실패: 해당 게시글을 찾을 수 없습니다.");
+        });
+
+        if (board.getUser().getUsername().equals(sessionUser)) {
+            board.setTitle(requestBoard.getTitle());
+            board.setContent(requestBoard.getContent());
+            return 1;
+        } else {
+            return 0;
+        }
+
+    }
+
 }

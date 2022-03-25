@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko"
-      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <!-- head.html -->
 <th:block th:replace="layout/head::headFragment"></th:block>
@@ -16,7 +16,7 @@
 
     <!--  게시글 수정, 삭제  -->
       <div th:if="${board.user.username.equals(#authentication.getName())}">
-        <button id="btn-update" class="btn btn-warning m-2">수정</button>
+        <a th:href="@{/board/{id}/updateForm(id=${board.id})}" class="btn btn-warning">수정</a>
         <button id="btn-delete" class="btn btn-danger m-2">삭제</button>
       </div>
 

@@ -7,8 +7,12 @@ import com.cos.blog.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @RequiredArgsConstructor
 @RestController
@@ -25,8 +29,15 @@ public class BoardApiController {
 
     @DeleteMapping("/api/board/{id}")
     public ResponseDto<Integer> deleteById(@PathVariable int id){
-        System.out.println("아이디 값 확인입니다."+id);
         boardService.deleteBoard(id);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
+    @PutMapping("/api/board/{id}")
+    public ResponseDto<Integer> update(@PathVariable int id, @RequestBody Board board, Principal principal){
+        String sessionUser = principal.getName();
+        int result = boardService.updateBoard(id, board, sessionUser);
+
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
     }
 }
